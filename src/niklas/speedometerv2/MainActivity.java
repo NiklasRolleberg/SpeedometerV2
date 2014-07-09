@@ -62,9 +62,9 @@ public class MainActivity extends Activity {
 		public float tids;
 		public float speed;
 		
-		public String hastigheten;
-		public String tiden;
-		public String distancen;
+		//public String hastigheten;
+		//public String tiden;
+		//public String distancen;
 		
 		/** Till distansräknaren*/
 		public boolean OnOff= false; 
@@ -169,7 +169,7 @@ public class MainActivity extends Activity {
 	           //Prefix fixande
 	           if(distance>1000)
 	           {
-	        	   distance= (int)(distance/1000);
+	        	   distance= ((int)(distance/100))/10f;
 	        	   kmM=" km";  	   
 	           }
 	           
@@ -184,22 +184,17 @@ public class MainActivity extends Activity {
 	           {
 	        	   minS=" s";
 	           }
-	           else if(upptid<3600)
+	           else
 	           {
 	        	   minS=" Min";
 	        	   upptid= (int)upptid/60;
 	           }
-	           else
-	           {
-	        	   minS=" h";
-	        	   upptid= (int)upptid/3600;
-	           }
 	           
 	                 	  
 	                     
-	           hastigheten= hastighet +" Km/h";
-	           distancen = distance+kmM;
-	           tiden =upptid+minS;
+	           //hastigheten= hastighet +" Km/h";
+	           //distancen = distance+kmM;
+	           //tiden =upptid+minS;
 	           
 	           
 	           drawView.invalidate(); //<<>

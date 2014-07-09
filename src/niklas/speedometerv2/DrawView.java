@@ -29,10 +29,13 @@ public class DrawView extends View{
     }
 
     @Override
-    public void onDraw(Canvas canvas) { 	
-        paint.setColor(Color.WHITE);
-        
+    public void onDraw(Canvas canvas) {
+    	//bakgrund
+    	paint.setColor(Color.BLACK);
+    	canvas.drawRect(0,0,b,h,paint);
+    	        
         //bakgrundscirkeln
+    	paint.setColor(Color.WHITE);
         canvas.drawCircle(b/2, b/2+h/20, b/2, paint);
         
         //Extra ruta
@@ -40,8 +43,8 @@ public class DrawView extends View{
         canvas.drawRect(0, h*0.6f, b, h, paint);
         
         paint.setColor(Color.RED);
-        canvas.drawLine(0, h*0.6f+(h/8), b, h*0.6f+(h/8), paint);
-        canvas.drawLine(0, h*0.85f, b, h*0.85f, paint);
+        //canvas.drawLine(0, h*0.6f+(h/8), b, h*0.6f+(h/8), paint);
+        //canvas.drawLine(0, h*0.85f, b, h*0.85f, paint);
         
         //Hastighetstext
         paint.setTextSize(h/10);
@@ -50,7 +53,7 @@ public class DrawView extends View{
         canvas.drawText(speed,b/6,h*0.6f+(h/10), paint);
         
         //Sträcka sedan start
-        distance=Integer.toString((int)(MainActivity.distance))+MainActivity.kmM;
+        distance=Float.toString((float)(MainActivity.distance))+MainActivity.kmM;
         canvas.drawText(distance,b/6,h*0.72f+(h/10), paint);
         
         //Tidstext
@@ -66,9 +69,9 @@ public class DrawView extends View{
         	double a=(-125+(i)*180/Math.PI)/skala;
         	a=(Math.round(a/10)*10);
         	text=Integer.toString((int)(a));
-
-        	//text=Integer.toString((-125+(int)((i)*180/Math.PI))/skala);
-        	canvas.drawText(text,    (float)(b/2+(b/3)*Math.cos(i))-b/80,      (float)(b/2+(b/3)*Math.sin(i)+b/10),     paint);
+        	
+        	canvas.drawText(text,(float)(b/2+(b/3)*Math.cos(i))-b/80,
+        						 (float)(b/2+(b/3)*Math.sin(i)+b/10),     paint);
         	i+=(Math.PI/180)*20*skala; //+20*	
         }
         
@@ -77,8 +80,9 @@ public class DrawView extends View{
         paint.setColor(Color.BLACK);
         i=(float) ((Math.PI/180)*135f);
         while (i<Math.PI*2.3){
-        				//   startX                                   StartY                                                 endX                                    endY                      
-        	canvas.drawLine((float) (b/2+(b/2.3)*Math.cos(i)),(float)(b/2+h/20+(b/2.3)*Math.sin(i)),(float) (b/2+(b/2)*Math.cos(i)), (float)(b/2+h/20+(b/2)*Math.sin(i)), paint);
+ 
+        	canvas.drawLine((float) (b/2+(b/2.3)*Math.cos(i)), (float)(b/2+h/20+(b/2.3)*Math.sin(i)),
+        					(float) (b/2+(b/2)*Math.cos(i)),   (float)(b/2+h/20+(b/2)*Math.sin(i)), paint);
         	i+=(Math.PI/180)*10; //+10*
         }
         
@@ -88,7 +92,8 @@ public class DrawView extends View{
         j=3;
         while(j<=9){
         	i=(float) ((Math.PI/180)*125f+(Math.PI/180)*10*j*skala);
-        	canvas.drawLine((float) (b/2+(b/3)*Math.cos(i)),(float)(b/2+h/20+(b/3)*Math.sin(i)), (float) (b/2+(b/2)*Math.cos(i)), (float)(b/2+h/20+(b/2)*Math.sin(i)), paint);
+        	canvas.drawLine((float) (b/2+(b/3)*Math.cos(i)),(float)(b/2+h/20+(b/3)*Math.sin(i)),
+        					(float) (b/2+(b/2)*Math.cos(i)), (float)(b/2+h/20+(b/2)*Math.sin(i)), paint);
         	j+=2;
         }
         
@@ -97,6 +102,7 @@ public class DrawView extends View{
         paint.setStrokeWidth(10);
         paint.setColor(Color.RED);
         V=(Math.PI/180)*(125+(MainActivity.hastighet*skala));
-        canvas.drawLine(b/2, b/2+h/20,(float) (b/2+(b/2.2)*Math.cos(V)), (float)(b/2+h/20+(b/2.2)*Math.sin(V)), paint);
+        canvas.drawLine(b/2, b/2+h/20,(float) (b/2+(b/2.2)*Math.cos(V)), 
+        				(float)(b/2+h/20+(b/2.2)*Math.sin(V)), paint);
     }
 }
